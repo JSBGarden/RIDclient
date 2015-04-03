@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.project.remoteclient"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.project.remoteclient.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.MouseActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.MOUSEACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.Prefs"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.PREFS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.Intro"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.INTRO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.Menu"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.MENU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.PowerPointRemoteActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.POWERPOINTREMOTEACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.Test"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.TEST" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.VlcRemote"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.VLCREMOTE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.About"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.project.remoteclient.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.remoteclient.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+    </application>
+
+</manifest>
