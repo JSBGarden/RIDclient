@@ -1,5 +1,7 @@
 package com.project.remoteclient;
 
+import com.project.remoteclient.process.status;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Menu extends ListActivity{
 	
@@ -17,6 +20,11 @@ public class Menu extends ListActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1 ,list[1]));
+		if (status.isconnected==1)		
+			Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
+		else
+			Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
+			
 	}
 	
 

@@ -36,9 +36,11 @@ public class ClientSocket {
 				public void run() {
 					try{
 						socket=new Socket(ip,port);
-						out = new PrintWriter(socket.getOutputStream(), true);					
+						out = new PrintWriter(socket.getOutputStream(), true);		
+						status.isconnected=1;
 					} catch (Exception e){					
 						e.printStackTrace();
+						status.isconnected=0;
 					}
 				}
 			}).start();

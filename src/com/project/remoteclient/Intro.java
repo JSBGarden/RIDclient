@@ -42,7 +42,6 @@ public class Intro extends Activity {
 				client.connect(ipa.getText().toString(), port);
 				Intent i=new Intent(Intro.this,Menu.class);
 				startActivity(i);
-				// TODO Auto-generated method stub
 				
 			}
 		});

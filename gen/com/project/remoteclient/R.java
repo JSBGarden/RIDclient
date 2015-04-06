@@ -102,10 +102,10 @@ public final class R {
         public static final int ibtnPrevious=0x7f0a0023;
         public static final int ibtnToggleBlack=0x7f0a0028;
         public static final int ibtnVLCFullscreen=0x7f0a0022;
-        public static final int ibtnVLCNext=0x7f0a001d;
-        public static final int ibtnVLCPlay=0x7f0a001c;
-        public static final int ibtnVLCPrevious=0x7f0a001b;
-        public static final int ibtnVLCStop=0x7f0a001e;
+        public static final int ibtnVLCNext=0x7f0a001e;
+        public static final int ibtnVLCPlay=0x7f0a001b;
+        public static final int ibtnVLCPrevious=0x7f0a001d;
+        public static final int ibtnVLCStop=0x7f0a001c;
         public static final int ibtnVLCVoldown=0x7f0a0020;
         public static final int ibtnVLCVolup=0x7f0a001f;
         public static final int ibtnVLCmute=0x7f0a0021;
@@ -133,9 +133,10 @@ public final class R {
         public static final int activity_mouse=0x7f030003;
         public static final int activity_splash=0x7f030004;
         public static final int activity_vlc=0x7f030005;
-        public static final int power_point_remote=0x7f030006;
-        public static final int tabview=0x7f030007;
-        public static final int test=0x7f030008;
+        public static final int activity_vlc2=0x7f030006;
+        public static final int power_point_remote=0x7f030007;
+        public static final int tabview=0x7f030008;
+        public static final int test=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f090000;
