@@ -22,7 +22,7 @@ public class VlcRemote extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_vlc2);
+		setContentView(R.layout.activity_vlc);
 		clientSocket=new ClientSocket();
 		play=(ImageButton)findViewById(R.id.ibtnVLCPlay);
 		prev=(ImageButton)findViewById(R.id.ibtnVLCPrevious);
