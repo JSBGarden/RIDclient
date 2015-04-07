@@ -30,17 +30,17 @@ public class ClientSocket {
 		
 		
 		//function to connect to the server 
-		public void connect(final String ip,final int port){
+		public void connect(final String ip,final int port, String password){
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
 					try{
 						socket=new Socket(ip,port);
 						out = new PrintWriter(socket.getOutputStream(), true);		
-						status.isconnected=1;
+						status.isconnected=true;
 					} catch (Exception e){					
 						e.printStackTrace();
-						status.isconnected=0;
+						status.isconnected=false;
 					}
 				}
 			}).start();

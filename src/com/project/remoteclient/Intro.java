@@ -31,15 +31,16 @@ public class Intro extends Activity {
 		setContentView(R.layout.activity_intro);
 		client=new ClientSocket();
 		Button connect;
-		final EditText ipa;
+		final EditText ipa,pass;
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
+		pass=(EditText)findViewById(R.id.txtPassword);
 		connect.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				
-				client.connect(ipa.getText().toString(), port);
+				client.connect(ipa.getText().toString(), port,pass.getText().toString());
 				Intent i=new Intent(Intro.this,Menu.class);
 				startActivity(i);
 				

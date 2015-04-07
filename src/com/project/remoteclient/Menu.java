@@ -20,7 +20,7 @@ public class Menu extends ListActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1 ,list[1]));
-		if (status.isconnected==1)		
+		if (status.isconnected==true)		
 			Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
 		else
 			Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
