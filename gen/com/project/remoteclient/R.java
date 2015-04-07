@@ -134,10 +134,9 @@ public final class R {
         public static final int activity_mouse=0x7f030003;
         public static final int activity_splash=0x7f030004;
         public static final int activity_vlc=0x7f030005;
-        public static final int activity_vlc2=0x7f030006;
-        public static final int power_point_remote=0x7f030007;
-        public static final int tabview=0x7f030008;
-        public static final int test=0x7f030009;
+        public static final int power_point_remote=0x7f030006;
+        public static final int tabview=0x7f030007;
+        public static final int test=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f090000;
