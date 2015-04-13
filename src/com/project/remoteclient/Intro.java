@@ -20,11 +20,12 @@ import com.project.remoteclient.process.MouseClientProcess;
 import com.project.remoteclient.process.status;
 import com.project.remoteprotocol.global.Buttons;
 import com.project.remoteprotocol.global.Events;
-
+import com.project.remoteserver.ServerConsole;
 
 public class Intro extends Activity {
 	ClientSocket client;
 	int port=8081;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class Intro extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
+				SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+				setData.edit().putString("ip", ipa.getText().toString()).commit();
+
 
 				client.connect(ipa.getText().toString(), port,pass.getText().toString());
 				try{
@@ -60,15 +64,16 @@ public class Intro extends Activity {
 
 			}
 		});
+		
 		SharedPreferences getData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
 		String et=getData.getString("ip", "ip is");
-
+		
 		boolean remember=getData.getBoolean("checkbox", true);
 		if(remember==true){
 			ipa.setText(et);
 		}
-
+		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(android.view.Menu menu) {
