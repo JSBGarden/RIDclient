@@ -6,13 +6,13 @@
       android:summary="Enter the ip address"     
       ></EditTextPreference> 
       <CheckBoxPreference
-          android:title="CheckBox"
+          android:title="Remember IP?"
           android:defaultValue="true"
           android:key="checkbox"
           android:summary="Check this box to remember ip"
          />
       <ListPreference
-          android:title="list" 
+          android:title="Controller Selection" 
           android:key="list"
           android:entries="@array/list"
           android:entryValues="@array/lValues"

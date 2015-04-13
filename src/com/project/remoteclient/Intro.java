@@ -13,9 +13,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.project.remoteclient.process.ClientSocket;
 import com.project.remoteclient.process.MouseClientProcess;
+import com.project.remoteclient.process.status;
 import com.project.remoteprotocol.global.Buttons;
 import com.project.remoteprotocol.global.Events;
 
@@ -35,12 +37,24 @@ public class Intro extends Activity {
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
 		pass=(EditText)findViewById(R.id.txtPassword);
+		
 		connect.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 
 				client.connect(ipa.getText().toString(), port,pass.getText().toString());
+				try{
+					if (status.isconnected==true)		
+						Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
+					else
+						Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
+					}
+					catch(Exception e){
+						e.printStackTrace();
+						//Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
+					}
+
 				Intent i=new Intent(Intro.this,MenuActivity.class);
 				startActivity(i);
 
