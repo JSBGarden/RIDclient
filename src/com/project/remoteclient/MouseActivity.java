@@ -15,6 +15,7 @@ import com.project.remoteclient.process.MouseClientProcess;
 
 
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -161,6 +162,9 @@ public class MouseActivity extends Activity {
 			Intent p=new Intent("com.project.remoteclient.PREFS");
 			startActivity(p);
 			break;
+		case R.id.Help:
+			Intent h=new Intent("com.project.remoteclient.HELPACTIVITY");
+			startActivity(h);
 		case R.id.exit:
 			finish();
 			break;	

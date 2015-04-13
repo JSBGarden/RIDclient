@@ -97,6 +97,9 @@ public class VlcRemote extends Activity {
 	 			Intent p=new Intent("com.project.remoteclient.PREFS");
 	 			startActivity(p);
 	 			break;
+	 		case R.id.Help:
+				Intent h=new Intent("com.project.remoteclient.HELPACTIVITY");
+				startActivity(h);
 	 		case R.id.exit:
 	 			finish();
 	 			break;	

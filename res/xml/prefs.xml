@@ -3,8 +3,7 @@
   <EditTextPreference
       android:title="Ip Address"
       android:key="ip"
-      android:summary="Enter the ip address"
-     
+      android:summary="Enter the ip address"     
       ></EditTextPreference> 
       <CheckBoxPreference
           android:title="CheckBox"

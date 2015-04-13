@@ -13,9 +13,15 @@
         android:title="Preferences"
         />
 	<item
+        android:id="@+id/Help"
+        
+        android:title="Help"
+        />
+	<item
         android:id="@+id/exit"
         
         android:title="Exit"
         />
+	
     
 </menu>

@@ -12,14 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class Menu extends ListActivity{
+public class MenuActivity extends ListActivity{
 	
 	String list[][]={{"MouseActivity","PowerPointRemoteActivity","VlcRemote"},{"Mouse and Keyboard","Power-Point Remote","Vlc Remote"}};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1 ,list[1]));
+		setListAdapter(new ArrayAdapter<String>(MenuActivity.this, android.R.layout.simple_list_item_1 ,list[1]));
 		if (status.isconnected==true)		
 			Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
 		else
@@ -35,7 +35,7 @@ public class Menu extends ListActivity{
 		String loadlist=list[0][position];
 		try{	
 		Class myclass=Class.forName("com.project.remoteclient."+loadlist);
-		Intent myIntent=new Intent(Menu.this,myclass);
+		Intent myIntent=new Intent(MenuActivity.this,myclass);
 		startActivity(myIntent);
 		//startActivityForResult(myIntent, 6);
 			

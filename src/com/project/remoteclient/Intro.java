@@ -23,7 +23,7 @@ import com.project.remoteprotocol.global.Events;
 public class Intro extends Activity {
 	ClientSocket client;
 	int port=8081;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -36,25 +36,25 @@ public class Intro extends Activity {
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
 		pass=(EditText)findViewById(R.id.txtPassword);
 		connect.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
-				
+
 				client.connect(ipa.getText().toString(), port,pass.getText().toString());
-				Intent i=new Intent(Intro.this,Menu.class);
+				Intent i=new Intent(Intro.this,MenuActivity.class);
 				startActivity(i);
-				
+
 			}
 		});
 		SharedPreferences getData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		
+
 		String et=getData.getString("ip", "ip is");
-		
+
 		boolean remember=getData.getBoolean("checkbox", true);
 		if(remember==true){
-		ipa.setText(et);
+			ipa.setText(et);
 		}
-		
+
 	}
 	@Override
 	public boolean onCreateOptionsMenu(android.view.Menu menu) {
@@ -78,12 +78,15 @@ public class Intro extends Activity {
 			Intent p=new Intent("com.project.remoteclient.PREFS");
 			startActivity(p);
 			break;
+		case R.id.Help:
+			Intent h=new Intent("com.project.remoteclient.HELPACTIVITY");
+			startActivity(h);
 		case R.id.exit:
 			finish();
 			break;	
-		
-			
-		
+
+
+
 		}
 		return false;
 	}
@@ -92,7 +95,7 @@ public class Intro extends Activity {
 	public boolean onMenuOpened(int featureId, android.view.Menu menu) {
 		// TODO Auto-generated method stub
 		return super.onMenuOpened(featureId, menu);
-		
+
 	}
-	
-	}
+
+}
