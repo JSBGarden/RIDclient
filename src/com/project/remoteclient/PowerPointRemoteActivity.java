@@ -74,6 +74,9 @@ public class PowerPointRemoteActivity extends Activity{
 	   		case R.id.ibtnToggleBlack:
 	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_TOGGLE_BLACK);
 	   			break;
+	   		case R.id.ibtnOk:
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_OK);
+	   			break;
 	   		}
 	       }
 	     };

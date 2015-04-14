@@ -67,7 +67,7 @@ public class Intro extends Activity {
 		
 		SharedPreferences getData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-		String et=getData.getString("ip", "ip is");
+		String et=getData.getString("ip", "");
 		
 		boolean remember=getData.getBoolean("checkbox", true);
 		if(remember==true){

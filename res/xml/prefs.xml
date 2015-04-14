@@ -6,7 +6,7 @@
       android:summary="Enter the ip address"     
       ></EditTextPreference> 
       <CheckBoxPreference
-          android:title="Remember IP?"
+          android:title="Remember IP"
           android:defaultValue="true"
           android:key="checkbox"
           android:summary="Check this box to remember ip"
@@ -22,5 +22,10 @@
           android:entries="@array/list"
           android:entryValues="@array/lValues"
 		/> 
+		<EditTextPreference
+		    android:title="Mouse Sensitivity"
+      		android:key="mousesensitivity"
+      		android:summary="Enter 0-10 for sensitivity"
+      		/>
 		
 </PreferenceScreen>

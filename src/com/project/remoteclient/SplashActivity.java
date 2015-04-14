@@ -19,6 +19,7 @@ public class SplashActivity extends Activity{
 	MediaPlayer music;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         music=MediaPlayer.create(SplashActivity.this, R.raw.harmonics);
