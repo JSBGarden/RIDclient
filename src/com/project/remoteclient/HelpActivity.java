@@ -1,6 +1,7 @@
 package com.project.remoteclient;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
@@ -27,6 +28,13 @@ public class HelpActivity extends Activity {
 		specs.setIndicator("VLC Remote");
 		th.addTab(specs);
 	}
+
+	/*@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		Intent i=new Intent(HelpActivity.this,Menu.class);
+		startActivity(i);
+	}*/
 	
 
 }

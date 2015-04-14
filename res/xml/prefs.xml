@@ -11,6 +11,11 @@
           android:key="checkbox"
           android:summary="Check this box to remember ip"
          />
+      <CheckBoxPreference
+          android:title="Music"
+          android:defaultValue="true"
+          android:key="music"
+          android:summary="Check to enable music"/>
       <ListPreference
           android:title="Controller Selection" 
           android:key="list"
