@@ -21,15 +21,17 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.project.remoteclient.SplashActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+				
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.project.remoteclient.MouseActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.project.remoteclient.MOUSEACTIVITY" />
@@ -66,7 +68,8 @@
         </activity>
         <activity
             android:name="com.project.remoteclient.Intro"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.project.remoteclient.INTRO" />
 
@@ -75,25 +78,31 @@
         </activity>
         <activity
             android:name="com.project.remoteclient.Menu"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.project.remoteclient.MENU" />
-
+			
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.project.remoteclient.PowerPointRemoteActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.project.remoteclient.POWERPOINTREMOTEACTIVITY" />
-
+				
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.project.remoteclient.Test"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait"
+            >
+        
             <intent-filter>
                 <action android:name="com.project.remoteclient.TEST" />
 
@@ -102,6 +111,7 @@
         </activity>
         <activity
             android:name="com.project.remoteclient.VlcRemote"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.project.remoteclient.VLCREMOTE" />
@@ -111,7 +121,8 @@
         </activity>
         <activity
             android:name="com.project.remoteclient.About"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.project.remoteclient.ABOUT" />
 
