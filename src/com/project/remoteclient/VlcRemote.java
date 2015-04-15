@@ -7,8 +7,10 @@ import com.project.remoteprotocol.global.Events;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +49,11 @@ public class VlcRemote extends Activity {
 	OnClickListener oclBtns = new OnClickListener() {
 	       @Override
 	       public void onClick(View v) {
-	    	   vibrate();
+	    	   SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+	    	   boolean vibenable=vib.getBoolean("vibrate", true);
+	    	   if(vibenable==true){
+	    	vibrate();
+	    	   }
 	    	   switch( v.getId())
 	   		{
 	   		case R.id.ibtnVLCPlay:

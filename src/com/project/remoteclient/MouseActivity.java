@@ -17,11 +17,14 @@ import com.project.remoteclient.process.MouseClientProcess;
 
 
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,7 +71,11 @@ public class MouseActivity extends Activity {
 					break;
 				case MotionEvent.ACTION_DOWN:
 					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_LEFT);
-					vibrate();
+					SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+			    	   boolean vibenable=vib.getBoolean("vibrate", true);
+			    	   if(vibenable==true){
+			    	vibrate();
+			    	   }
 					break;
 					
 				}
@@ -87,7 +94,11 @@ public class MouseActivity extends Activity {
 					break;
 				case MotionEvent.ACTION_DOWN:
 					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_RIGHT);
-					vibrate();
+					SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+			    	   boolean vibenable=vib.getBoolean("vibrate", true);
+			    	   if(vibenable==true){
+			    	vibrate();
+			    	   }
 					break;
 					
 				}

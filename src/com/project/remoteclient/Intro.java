@@ -43,7 +43,8 @@ public class Intro extends Activity {
 		connect.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {				
+			public void onClick(View arg0) {	
+				
 				SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 				setData.edit().putString("ip", ipa.getText().toString()).commit();
 

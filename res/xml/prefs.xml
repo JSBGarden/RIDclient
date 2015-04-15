@@ -27,5 +27,11 @@
       		android:key="mousesensitivity"
       		android:summary="Enter 0-10 for sensitivity"
       		/>
+		<CheckBoxPreference
+		    android:title="Haptic Feedback"
+		    android:key="vibrate"
+		    android:defaultValue="true"
+		    android:summary="Check to enable haptic feedback"/>
+		    
 		
 </PreferenceScreen>
