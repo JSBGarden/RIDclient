@@ -16,10 +16,12 @@ import com.project.remoteclient.process.MouseClientProcess;
 
 
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -66,6 +68,7 @@ public class MouseActivity extends Activity {
 					break;
 				case MotionEvent.ACTION_DOWN:
 					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_LEFT);
+					vibrate();
 					break;
 					
 				}
@@ -84,6 +87,7 @@ public class MouseActivity extends Activity {
 					break;
 				case MotionEvent.ACTION_DOWN:
 					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_RIGHT);
+					vibrate();
 					break;
 					
 				}
@@ -102,10 +106,14 @@ public class MouseActivity extends Activity {
 		btnMousepad.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent motionEvent) {
+				
 				int action = (motionEvent.getAction() & MotionEvent.ACTION_MASK);
 				 
 			mouseClientProcess.updateCoordinate( motionEvent.getX(),  motionEvent.getY());
-				     switch (action){				
+				     switch (action){		
+				     case MotionEvent.ACTION_DOWN:
+				    	 vibrate();
+				    	 break;
 				     case MotionEvent.ACTION_MOVE:								    
 				     case MotionEvent.ACTION_UP:								    
 				     case MotionEvent.ACTION_POINTER_UP:								    
@@ -174,4 +182,9 @@ public class MouseActivity extends Activity {
 		}
 		return false;
 	}
+ 	//function for vibration
+ 	private void vibrate(){	 		    	   
+    	   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
+   			vibe.vibrate(100);
+ 	}
 }

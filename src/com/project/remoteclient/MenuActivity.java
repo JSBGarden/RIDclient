@@ -1,6 +1,6 @@
 package com.project.remoteclient;
 
-import com.project.remoteclient.process.status;
+import com.project.remoteclient.process.Status;
 
 import android.app.ListActivity;
 import android.content.Intent;

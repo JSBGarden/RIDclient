@@ -1,6 +1,6 @@
 package com.project.remoteclient;
 
-import com.project.remoteclient.process.status;
+import com.project.remoteclient.process.Status;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -20,7 +20,7 @@ public class Menu extends ListActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1 ,list[1]));
-		if (status.isconnected==true)		
+		if (Status.isconnected==true)		
 			Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
 		else
 			Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();

@@ -5,8 +5,10 @@ import com.project.remoteprotocol.global.Buttons;
 import com.project.remoteprotocol.global.Events;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,7 +55,8 @@ public class PowerPointRemoteActivity extends Activity{
 	
 	OnClickListener oclBtns = new OnClickListener() {
 	       @Override
-	       public void onClick(View v) {	         
+	       public void onClick(View v) {
+	    	vibrate();
 	    	   switch( v.getId())
 	   		{
 	   		case R.id.ibtnExit:
@@ -113,5 +116,12 @@ public class PowerPointRemoteActivity extends Activity{
 	 		
 	 		}
 	 		return false;
+	 	}
+	 	
+	 	
+	 	//function for vibration
+	 	private void vibrate(){	 		    	   
+	    	   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
+	   			vibe.vibrate(100);
 	 	}
 }

@@ -37,10 +37,10 @@ public class ClientSocket {
 					try{
 						socket=new Socket(ip,port);
 						out = new PrintWriter(socket.getOutputStream(), true);		
-						status.isconnected=true;
+						Status.isconnected=true;
 					} catch (Exception e){					
 						e.printStackTrace();
-						status.isconnected=false;
+						Status.isconnected=false;
 					}
 				}
 			}).start();
