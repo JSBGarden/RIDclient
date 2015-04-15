@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
@@ -26,7 +28,7 @@ import com.project.remoteprotocol.global.Events;
 public class Intro extends Activity {
 	ClientSocket client;
 	int port=8081;
-	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,43 +41,48 @@ public class Intro extends Activity {
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
 		pass=(EditText)findViewById(R.id.txtPassword);
-		
+
 		connect.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {	
-				
-				SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-				setData.edit().putString("ip", ipa.getText().toString()).commit();
-
-
-				client.connect(ipa.getText().toString(), port,pass.getText().toString());
-				try{
-					if (Status.isconnected==true)		
-						Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
-					else
-						Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
+			public void onClick(View arg0) {
+				// open other activity only if connected to wifi or not
+				//if (isWifiConnected())
+				{
+					SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+					setData.edit().putString("ip", ipa.getText().toString()).commit();
+					client.connect(ipa.getText().toString(), port,pass.getText().toString());
+					try{
+						if (Status.isconnected==true)		
+							Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
+						else
+							Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
 					}
 					catch(Exception e){
 						e.printStackTrace();
 						//Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
 					}
 
-				Intent i=new Intent(Intro.this,MenuActivity.class);
-				startActivity(i);
+					Intent i=new Intent(Intro.this,MenuActivity.class);
+					startActivity(i);
+				}
+/*				else
+				{
+					Toast.makeText(getApplicationContext(), "Wifi Not connected", Toast.LENGTH_SHORT).show();
+				}*/
 
 			}
 		});
-		
+
 		SharedPreferences getData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
 		String et=getData.getString("ip", "");
-		
+
 		boolean remember=getData.getBoolean("checkbox", true);
 		if(remember==true){
 			ipa.setText(et);
 		}
-		
+
 	}
 	@Override
 	public boolean onCreateOptionsMenu(android.view.Menu menu) {
@@ -119,4 +126,14 @@ public class Intro extends Activity {
 
 	}
 
+
+
+	//check if the device connected to wifinetwork or not	
+	private Boolean isWifiConnected(){
+		ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		return mWifi.isConnected(); 
+
+
+	}
 }
