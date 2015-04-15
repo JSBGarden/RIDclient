@@ -122,8 +122,13 @@ public class PowerPointRemoteActivity extends Activity{
 	 	
 	 	
 	 	//function for vibration
-	 	private void vibrate(){	 		    	   
-	    	   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
-	   			vibe.vibrate(100);
+	 	private void vibrate(){
+	 		SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+	 	   boolean vibenable=vib.getBoolean("vibrate", true);
+	 	   if(vibenable==true){
+	 		   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
+	  			vibe.vibrate(100);
+	 	   }
+	    	
 	 	}
 }
