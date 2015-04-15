@@ -71,11 +71,7 @@ public class MouseActivity extends Activity {
 					break;
 				case MotionEvent.ACTION_DOWN:
 					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_LEFT);
-					SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-			    	   boolean vibenable=vib.getBoolean("vibrate", true);
-			    	   if(vibenable==true){
-			    	vibrate();
-			    	   }
+					vibrate();
 					break;
 					
 				}
@@ -94,11 +90,8 @@ public class MouseActivity extends Activity {
 					break;
 				case MotionEvent.ACTION_DOWN:
 					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_RIGHT);
-					SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-			    	   boolean vibenable=vib.getBoolean("vibrate", true);
-			    	   if(vibenable==true){
+					SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());			    	   
 			    	vibrate();
-			    	   }
 					break;
 					
 				}
@@ -194,8 +187,13 @@ public class MouseActivity extends Activity {
 		return false;
 	}
  	//function for vibration
- 	private void vibrate(){	 		    	   
-    	   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
-   			vibe.vibrate(100);
+ 	private void vibrate(){
+ 		SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+ 	   boolean vibenable=vib.getBoolean("vibrate", true);
+ 	   if(vibenable==true){
+ 		   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
+  			vibe.vibrate(100);
+ 	   }
+    	
  	}
 }

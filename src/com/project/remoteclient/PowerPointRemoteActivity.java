@@ -57,12 +57,8 @@ public class PowerPointRemoteActivity extends Activity{
 	
 	OnClickListener oclBtns = new OnClickListener() {
 	       @Override
-	       public void onClick(View v) {
-	    	   SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-	    	   boolean vibenable=vib.getBoolean("vibrate", true);
-	    	   if(vibenable==true){
-	    	vibrate();
-	    	   }
+	       public void onClick(View v) {	    	   
+	    	   vibrate();	    	   
 	    	   switch( v.getId())
 	   		{
 	   		case R.id.ibtnExit:
