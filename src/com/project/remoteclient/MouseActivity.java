@@ -3,28 +3,20 @@ package com.project.remoteclient;
 
 import com.project.remoteclient.process.ClientSocket;
 import com.project.remoteclient.process.MouseClientProcess;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.*;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,13 +26,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.project.remoteprotocol.global.Buttons;
 import com.project.remoteprotocol.global.Events;
-public class MouseActivity extends Activity {
+public class MouseActivity extends ActionBarActivity implements android.widget.AdapterView.OnItemClickListener  {
+	private DrawerLayout dl;
+	private ListView lv;
+	private String[] a;
+	private ActionBarDrawerToggle drawerListener;
 	ClientSocket client;
 	MouseClientProcess mouseClientProcess;
 	Button btnLeftClick,btnRightClick;
@@ -50,7 +50,15 @@ public class MouseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
-	
+		dl=(DrawerLayout)findViewById(R.id.drawer_layout);
+		lv=(ListView)findViewById(R.id.left_drawer);
+		a=getResources().getStringArray(R.array.Menu);
+		lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 ,a));
+		lv.setOnItemClickListener(this);
+		drawerListener=new ActionBarDrawerToggle(this, dl, R.drawable.drawericon, R.string.drawer_open, R.string.drawer_close);
+		dl.setDrawerListener(drawerListener);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		client=new ClientSocket();
 		mouseClientProcess= new MouseClientProcess();
 		btnMousepad=(ImageButton) findViewById(R.id.btnmouse);		
@@ -152,40 +160,15 @@ public class MouseActivity extends Activity {
 		return super.onKeyDown(keyCode, event);
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(android.view.Menu menu) {
-		// TODO Auto-generated method stub
-		super.onCreateOptionsMenu(menu);
-		MenuInflater blowUp = getMenuInflater();
-		blowUp.inflate(R.menu.main, menu);
-		return true;
-	}
+	
 
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		switch(item.getItemId()){
-		case R.id.aboutUs:
-			Intent i=new Intent("com.project.remoteclient.ABOUT");
-			startActivity(i);
-			break;
-		case R.id.preferences:
-			Intent p=new Intent("com.project.remoteclient.PREFS");
-			startActivity(p);
-			break;
-		case R.id.Help:
-			Intent h=new Intent("com.project.remoteclient.HELPACTIVITY");
-			startActivity(h);
-		case R.id.exit:
-			finish();
-			break;	
+	
 		
 			
 		
-		}
-		return false;
-	}
+		
+	
  	//function for vibration
  	private void vibrate(){
  		SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -196,4 +179,97 @@ public class MouseActivity extends Activity {
  	   }
     	
  	}
+
+ 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		if(drawerListener.onOptionsItemSelected(item))
+		{
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
+		drawerListener.onConfigurationChanged(newConfig);
+	}
+
+	@Override
+	public boolean onMenuOpened(int featureId, android.view.Menu menu) {
+		// TODO Auto-generated method stub
+		return super.onMenuOpened(featureId, menu);
+
+	}
+
+
+
+	//check if the device connected to wifinetwork or not	
+	private Boolean isWifiConnected(){
+		ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		return mWifi.isConnected(); 
+
+
+	}
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+		Toast.makeText(this, a[position], Toast.LENGTH_LONG).show();
+		selectItem(position);
+		
+	}
+	public void selectItem(int position) {
+		lv.setItemChecked(position, true);
+		setTitle(a[position]);
+		switch(position){
+		case 0:
+			Intent a=new Intent(MouseActivity.this,MouseActivity.class);
+			startActivity(a);
+			break;
+		case 1:
+			Intent b=new Intent(MouseActivity.this,PowerPointRemoteActivity.class);
+			startActivity(b);
+			break;
+		case 2:
+			Intent c=new Intent(MouseActivity.this,VlcRemote.class);
+			startActivity(c);
+			break;
+		case 3:
+			Intent d=new Intent(MouseActivity.this,Prefs.class);
+			startActivity(d);
+			break;
+		case 4:
+			Intent e=new Intent(MouseActivity.this,HelpActivity.class);
+			startActivity(e);
+			break;
+		case 5:
+			Intent f=new Intent(MouseActivity.this,About.class);
+			startActivity(f);
+			break;
+		case 6:
+			finish();
+			break;
+			default:
+		}
+		
+	}
+	public void setTitle(String title){
+		getSupportActionBar().setTitle(title);
+	
+	}
+	
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onPostCreate(savedInstanceState);
+		drawerListener.syncState();
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		finish();
+	}
+	
 }
