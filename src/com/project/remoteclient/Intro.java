@@ -1,6 +1,7 @@
 package com.project.remoteclient;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,10 +18,10 @@ import android.widget.Toast;
 
 import com.project.remoteclient.process.ClientSocket;
 import com.project.remoteclient.process.MouseClientProcess;
-import com.project.remoteclient.process.status;
+import com.project.remoteclient.process.Status;
 import com.project.remoteprotocol.global.Buttons;
 import com.project.remoteprotocol.global.Events;
-import com.project.remoteserver.ServerConsole;
+
 
 public class Intro extends Activity {
 	ClientSocket client;
@@ -42,14 +43,14 @@ public class Intro extends Activity {
 		connect.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View arg0) {				
 				SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 				setData.edit().putString("ip", ipa.getText().toString()).commit();
 
 
 				client.connect(ipa.getText().toString(), port,pass.getText().toString());
 				try{
-					if (status.isconnected==true)		
+					if (Status.isconnected==true)		
 						Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
 					else
 						Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
