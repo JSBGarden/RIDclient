@@ -17,13 +17,14 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
+        public static final int MainMenu=0x7f0e0003;
         public static final int Menu=0x7f0e0002;
         public static final int lValues=0x7f0e0001;
         public static final int list=0x7f0e0000;
-        public static final int pref_example_list_titles=0x7f0e0003;
-        public static final int pref_example_list_values=0x7f0e0004;
-        public static final int pref_sync_frequency_titles=0x7f0e0005;
-        public static final int pref_sync_frequency_values=0x7f0e0006;
+        public static final int pref_example_list_titles=0x7f0e0004;
+        public static final int pref_example_list_values=0x7f0e0005;
+        public static final int pref_sync_frequency_titles=0x7f0e0006;
+        public static final int pref_sync_frequency_values=0x7f0e0007;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 

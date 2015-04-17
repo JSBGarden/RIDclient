@@ -17,5 +17,11 @@
    <item >About Us</item>
    <item >Exit</item>
    </string-array>
+   <string-array name="MainMenu">
+   <item >Preferences</item>
+   <item >Help</item>
+   <item >About Us</item>
+   <item >Exit</item>
+   </string-array>
     
 </resources>

@@ -1,6 +1,7 @@
 package com.project.remoteclient;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +38,7 @@ import com.project.remoteprotocol.global.Events;
 public class Intro extends ActionBarActivity implements OnItemClickListener {
 	private DrawerLayout dl;
 	private ListView lv;
-	private String[] a;
+	private String[] listItem;
 	private ActionBarDrawerToggle drawerListener;
 	ClientSocket client;
 	int port=8081;
@@ -49,8 +51,8 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		setContentView(R.layout.activity_intro);
 		dl=(DrawerLayout)findViewById(R.id.drawer_layout);
 		lv=(ListView)findViewById(R.id.left_drawer);
-		a=getResources().getStringArray(R.array.Menu);
-		lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 ,a));
+		listItem=getResources().getStringArray(R.array.MainMenu);
+		lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 ,listItem));
 		lv.setOnItemClickListener(this);
 		drawerListener=new ActionBarDrawerToggle(this, dl, R.drawable.drawericon, R.string.drawer_open, R.string.drawer_close);
 		dl.setDrawerListener(drawerListener);
@@ -84,7 +86,7 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 						//Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
 					}
 
-					Intent i=new Intent(Intro.this,MenuActivity.class);
+					Intent i=new Intent(Intro.this,MouseActivity.class);
 					startActivity(i);
 				}
 /*				else
@@ -143,41 +145,30 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	}
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-		Toast.makeText(this, a[position], Toast.LENGTH_LONG).show();
+		Toast.makeText(this, listItem[position], Toast.LENGTH_LONG).show();
 		selectItem(position);
 		
 	}
 	public void selectItem(int position) {
 		lv.setItemChecked(position, true);
-		setTitle(a[position]);
+		setTitle(listItem[position]);
 		switch(position){
 		case 0:
-			Intent a=new Intent(Intro.this,MouseActivity.class);
+			Intent a=new Intent(Intro.this,Prefs.class);
 			startActivity(a);
 			break;
 		case 1:
-			Intent b=new Intent(Intro.this,PowerPointRemoteActivity.class);
+			Intent b=new Intent(Intro.this,HelpActivity.class);
 			startActivity(b);
 			break;
 		case 2:
-			Intent c=new Intent(Intro.this,VlcRemote.class);
+			Intent c=new Intent(Intro.this,About.class);
 			startActivity(c);
 			break;
 		case 3:
-			Intent d=new Intent(Intro.this,Prefs.class);
-			startActivity(d);
+			System.exit(0);
 			break;
-		case 4:
-			Intent e=new Intent(Intro.this,HelpActivity.class);
-			startActivity(e);
-			break;
-		case 5:
-			Intent f=new Intent(Intro.this,About.class);
-			startActivity(f);
-			break;
-		case 6:
-			finish();
-			break;
+		
 			default:
 		}
 		

@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
 public class SplashActivity extends Activity{
@@ -21,6 +23,9 @@ public class SplashActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
     	
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         music=MediaPlayer.create(SplashActivity.this, R.raw.harmonics);
         SharedPreferences musicenable=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
