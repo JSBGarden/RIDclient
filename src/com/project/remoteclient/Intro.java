@@ -42,7 +42,8 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	private ActionBarDrawerToggle drawerListener;
 	ClientSocket client;
 	int port=8081;
-
+	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+	private long mBackPressed;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,9 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
 		pass=(EditText)findViewById(R.id.txtPassword);
+		if (getIntent().getBooleanExtra("EXIT", false)) {
+	         finish();
+	    }
 
 		connect.setOnClickListener(new OnClickListener() {
 
@@ -145,13 +149,13 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	}
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-		Toast.makeText(this, listItem[position], Toast.LENGTH_LONG).show();
+		//Toast.makeText(this, listItem[position], Toast.LENGTH_LONG).show();
 		selectItem(position);
 		
 	}
 	public void selectItem(int position) {
 		lv.setItemChecked(position, true);
-		setTitle(listItem[position]);
+		//setTitle(listItem[position]);
 		switch(position){
 		case 0:
 			Intent a=new Intent(Intro.this,Prefs.class);
@@ -166,17 +170,14 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 			startActivity(c);
 			break;
 		case 3:
-			System.exit(0);
+			finish();
 			break;
 		
 			default:
 		}
-		
+		dl.closeDrawer(lv);
 	}
-	public void setTitle(String title){
-		getSupportActionBar().setTitle(title);
 	
-	}
 	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -185,5 +186,20 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		drawerListener.syncState();
 	}
 	
-	
+	@Override
+	public void onBackPressed()
+	{
+	    if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
+	    { 
+	        super.onBackPressed(); 
+	        Intent intent = new Intent(getApplicationContext(), Intro.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.putExtra("EXIT", true);
+			startActivity(intent);
+	        return;
+	    }
+	    else { Toast.makeText(getBaseContext(), "Tap back button again in order to exit", Toast.LENGTH_SHORT).show(); }
+
+	    mBackPressed = System.currentTimeMillis();
+	}
 }

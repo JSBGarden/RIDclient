@@ -12,9 +12,11 @@
    <item >Mouse And Keyboard</item>
    <item >PowerPoint Remote</item>
    <item >VLC Remote</item>
+   <item >Joypad</item>
    <item >Preferences</item>
    <item >Help</item>
    <item >About Us</item>
+   <item >Disconnect</item>
    <item >Exit</item>
    </string-array>
    <string-array name="MainMenu">

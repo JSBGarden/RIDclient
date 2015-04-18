@@ -31,6 +31,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class VlcRemote extends ActionBarActivity implements OnItemClickListener {
+	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+	private long mBackPressed;
 	private DrawerLayout dl;
 	private ListView lv;
 	private String[] a;
@@ -152,13 +154,13 @@ public class VlcRemote extends ActionBarActivity implements OnItemClickListener 
 		}
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-			Toast.makeText(this, a[position], Toast.LENGTH_LONG).show();
+			//Toast.makeText(this, a[position], Toast.LENGTH_LONG).show();
 			selectItem(position);
 			
 		}
 		public void selectItem(int position) {
 			lv.setItemChecked(position, true);
-			setTitle(a[position]);
+			//setTitle(a[position]);
 			switch(position){
 			case 0:
 				Intent a=new Intent(this,MouseActivity.class);
@@ -172,29 +174,37 @@ public class VlcRemote extends ActionBarActivity implements OnItemClickListener 
 				Intent c=new Intent(this,VlcRemote.class);
 				startActivity(c);
 				break;
-			case 3:
+			//case 3:
+				//Intent j=new Intent(this,joypadActivity.class);
+				//startActivity(j);
+				//break;
+			case 4:
 				Intent d=new Intent(this,Prefs.class);
 				startActivity(d);
 				break;
-			case 4:
+			case 5:
 				Intent e=new Intent(this,HelpActivity.class);
 				startActivity(e);
 				break;
-			case 5:
+			case 6:
 				Intent f=new Intent(this,About.class);
 				startActivity(f);
 				break;
-			case 6:
-				finish();
+			case 7:
+				Intent g=new Intent(this,Intro.class);
+				startActivity(g);
+				break;
+			case 8:
+				Intent intent = new Intent(getApplicationContext(), Intro.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				intent.putExtra("EXIT", true);
+				startActivity(intent);
 				break;
 				default:
 			}
-			
+			dl.closeDrawer(lv);
 		}
-		public void setTitle(String title){
-			getSupportActionBar().setTitle(title);
 		
-		}
 		
 		
 
@@ -206,13 +216,23 @@ public class VlcRemote extends ActionBarActivity implements OnItemClickListener 
 			super.onPostCreate(savedInstanceState);
 			drawerListener.syncState();
 		}
-		@Override
-		protected void onPause() {
-			// TODO Auto-generated method stub
-			super.onPause();
-			finish();
-		}
 		
+		@Override
+		public void onBackPressed()
+		{
+		    if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
+		    { 
+		        super.onBackPressed(); 
+		        Intent intent = new Intent(getApplicationContext(), Intro.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				intent.putExtra("EXIT", true);
+				startActivity(intent);
+		        return;
+		    }
+		    else { Toast.makeText(getBaseContext(), "Tap back button again in order to exit", Toast.LENGTH_SHORT).show(); }
+
+		    mBackPressed = System.currentTimeMillis();
+		}
 	}
 
 
