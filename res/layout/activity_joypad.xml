@@ -8,10 +8,18 @@
         android:layout_height="match_parent"
         android:weightSum="100" >
 
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:weightSum="100"
+    android:layout_weight="50"
+     >
+    
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_gravity="center"
             android:weightSum="100" >
 
             <FrameLayout
@@ -22,10 +30,10 @@
 
                 <ImageButton
                     android:id="@+id/btnLeft"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
+                    
                     android:background="@drawable/leftcustom" />
 
                 <ToggleButton
@@ -52,9 +60,9 @@
                     <ImageButton
                         android:id="@+id/btnUp"
                         android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|top"
-                        android:layout_marginTop="30dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/upcustom" />
 
                 </FrameLayout>
@@ -67,9 +75,9 @@
                     <ImageButton
                         android:id="@+id/btnDown"
                         android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center"
-                        android:layout_marginBottom="30dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/downcustom" />
 
                 </FrameLayout>
@@ -83,25 +91,32 @@
 
                 <ImageButton
                     android:id="@+id/btnRight"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="30dp"
+                    
                     android:background="@drawable/rightcustom" />
 
                 <ImageButton
                     android:id="@+id/btnSelect"
                     android:layout_width="70dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="bottom|center"
+                    android:layout_gravity="bottom|center|right"
                     android:background="@drawable/selectcustom" />
             </FrameLayout>
         </LinearLayout>
+		</FrameLayout>
+		<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:weightSum="100"
+    android:layout_weight="50">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_gravity="center"
             android:weightSum="100" >
 
             <FrameLayout
@@ -142,8 +157,8 @@
                         android:id="@+id/btnTriangle"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_gravity="center|top"
-                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/trianglecustoms" />
 
                 </FrameLayout>
@@ -157,8 +172,8 @@
                         android:id="@+id/btnCross"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_gravity="bottom|center"
-                        android:layout_marginBottom="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/crosscustom" />
 
                 </FrameLayout>
@@ -175,9 +190,10 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/circle" />
+                    android:background="@drawable/circlecustom" />
             </FrameLayout>
         </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 
 </FrameLayout>

@@ -5,8 +5,10 @@ import com.project.remoteprotocol.global.Buttons;
 import com.project.remoteprotocol.global.Events;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -56,6 +58,7 @@ public class joypadactivity extends Activity {
 		ibtnRight.setOnTouchListener(otl);
 		ibtnCircle.setOnTouchListener(otl);
 	}
+	
 	OnTouchListener otl=new OnTouchListener() {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
@@ -64,6 +67,7 @@ public class joypadactivity extends Activity {
 			controlNumber=Integer.parseInt( tb.getText().toString())-1;
 
 			if (controlNumber==0){
+				
 				switch(v.getId())
 				{
 				case R.id.btnUp:
@@ -144,9 +148,11 @@ public class joypadactivity extends Activity {
 
 			{
 			case MotionEvent.ACTION_UP:
+				
 				client.send(Events.BUTTON_RELEASE+","+button);
 				break;
 			case MotionEvent.ACTION_DOWN:
+				vibrate();
 				client.send(Events.BUTTON_PRESS+","+button);
 				break;
 			}
@@ -156,7 +162,12 @@ public class joypadactivity extends Activity {
 
 
 
+		private void vibrate(){
+	 		SharedPreferences vib=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+	 	   boolean vibenable=vib.getBoolean("vibrate", true);
+	 	   if(vibenable==true){
+	 		   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
+	  			vibe.vibrate(100);}
 
-
-}
+}}
 
