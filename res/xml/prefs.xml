@@ -5,11 +5,16 @@
       android:key="ip"
       android:summary="Enter the ip address"     
       ></EditTextPreference> 
+      <EditTextPreference
+      android:title="Port"
+      android:key="port"
+      android:summary="Enter the port number"     
+      ></EditTextPreference>
       <CheckBoxPreference
-          android:title="Remember IP"
+          android:title="Remember IP and Port Number"
           android:defaultValue="true"
           android:key="checkbox"
-          android:summary="Check this box to remember ip"
+          android:summary="Check this box to remember ip address and port number"
          />
       <CheckBoxPreference
           android:title="Music"

@@ -41,7 +41,7 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	private String[] listItem;
 	private ActionBarDrawerToggle drawerListener;
 	ClientSocket client;
-	int port=8081;
+	int port;
 	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
 	private long mBackPressed;
 
@@ -61,9 +61,10 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		client=new ClientSocket();
 		Button connect;
-		final EditText ipa,pass;
+		final EditText ipa,pass,portnumber;
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
+		portnumber=(EditText)findViewById(R.id.txtPortNumber);
 		pass=(EditText)findViewById(R.id.txtPassword);
 		if (getIntent().getBooleanExtra("EXIT", false)) {
 	         finish();
@@ -76,8 +77,10 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 				// open other activity only if connected to wifi or not
 				//if (isWifiConnected())
 				{
+					port= Integer.parseInt(portnumber.getText().toString());
 					SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 					setData.edit().putString("ip", ipa.getText().toString()).commit();
+					setData.edit().putString("port", portnumber.getText().toString()).commit();
 					client.connect(ipa.getText().toString(), port,pass.getText().toString());
 					try{
 						if (Status.isconnected==true)		
@@ -104,10 +107,12 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		SharedPreferences getData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
 		String et=getData.getString("ip", "");
+		String et2=getData.getString("port", "");
 
 		boolean remember=getData.getBoolean("checkbox", true);
 		if(remember==true){
 			ipa.setText(et);
+			portnumber.setText(et2);
 		}
 
 	}
