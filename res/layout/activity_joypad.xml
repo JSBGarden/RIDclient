@@ -20,12 +20,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="33" >
 
-                <ImageView
-                    android:id="@+id/imageView5"
+                <ImageButton
+                    android:id="@+id/btnLeft"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/leftcustom" />
+                    android:background="@drawable/leftcustom" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="2"
+                    android:textOn="1" />
+
             </FrameLayout>
 
             <LinearLayout
@@ -40,12 +48,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="50" >
 
-                    <ImageView
-                        android:id="@+id/imageView7"
+                    <ImageButton
+                        android:id="@+id/btnUp"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:src="@drawable/upcustom" />
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/upcustom" />
+
                 </FrameLayout>
 
                 <FrameLayout
@@ -53,12 +63,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="50" >
 
-                    <ImageView
-                        android:id="@+id/imageView8"
+                    <ImageButton
+                        android:id="@+id/btnDown"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:src="@drawable/downcustom" />
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/downcustom" />
+
                 </FrameLayout>
             </LinearLayout>
 
@@ -68,19 +80,19 @@
                 android:layout_height="match_parent"
                 android:layout_weight="33" >
 
-                <ImageView
-                    android:id="@+id/imageView6"
+                <ImageButton
+                    android:id="@+id/btnRight"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/rightcustom" />
+                    android:background="@drawable/rightcustom" />
 
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
+                <ImageButton
+                    android:id="@+id/btnSelect"
+                    android:layout_width="70dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="bottom"
-                    android:src="@drawable/selectcustom" />
+                    android:layout_gravity="bottom|center"
+                    android:background="@drawable/selectcustom" />
             </FrameLayout>
         </LinearLayout>
 
@@ -96,19 +108,19 @@
                 android:layout_height="match_parent"
                 android:layout_weight="33" >
 
-                <ImageView
-                    android:id="@+id/imageView4"
+                <ImageButton
+                    android:id="@+id/btnSquare"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/squarecustom" />
+                    android:background="@drawable/squarecustom" />
 
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="wrap_content"
+                <ImageButton
+                    android:id="@+id/btnStart"
+                    android:layout_width="70dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="bottom"
-                    android:src="@drawable/startcustom" />
+                    android:layout_gravity="bottom|center"
+                    android:background="@drawable/startcustom" />
             </FrameLayout>
 
             <LinearLayout
@@ -121,13 +133,17 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top"
                     android:layout_weight="50" >
 
-                    <ImageView
-                        android:id="@+id/imageView1"
+                    <ImageButton
+                        android:id="@+id/btnTriangle"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/trianglecustoms" />
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/trianglecustoms" />
+
                 </FrameLayout>
 
                 <FrameLayout
@@ -135,12 +151,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="50" >
 
-                    <ImageView
-                        android:id="@+id/imageView2"
+                    <ImageButton
+                        android:id="@+id/btnCross"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_gravity="bottom"
-                        android:src="@drawable/crosscustom" />
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/crosscustom" />
+
                 </FrameLayout>
             </LinearLayout>
 
@@ -150,12 +168,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="33" >
 
-                <ImageView
-                    android:id="@+id/imageView3"
+                <ImageButton
+                    android:id="@+id/btnCircle"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/circlecustom" />
+                    android:background="@drawable/circle" />
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>

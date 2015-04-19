@@ -19,6 +19,7 @@
       <ListPreference
           android:title="Controller Selection" 
           android:key="list"
+          android:defaultValue="Controller 1"
           android:entries="@array/list"
           android:entryValues="@array/lValues"
 		/> 

@@ -177,10 +177,10 @@ public class PowerPointRemoteActivity extends ActionBarActivity implements OnIte
 				Intent c=new Intent(this,VlcRemote.class);
 				startActivity(c);
 				break;
-			//case 3:
-				//Intent j=new Intent(this,joypadActivity.class);
-				//startActivity(j);
-				//break;
+			case 3:
+				Intent j=new Intent(this,joypadactivity.class);
+				startActivity(j);
+				break;
 			case 4:
 				Intent d=new Intent(this,Prefs.class);
 				startActivity(d);
