@@ -195,6 +195,7 @@ public class PowerPointRemoteActivity extends ActionBarActivity implements OnIte
 				break;
 			case 7:
 				Intent g=new Intent(this,Intro.class);
+				clientSocket.disconnect();
 				startActivity(g);
 				break;
 			case 8:

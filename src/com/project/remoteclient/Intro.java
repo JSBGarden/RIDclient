@@ -81,7 +81,9 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 					SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 					setData.edit().putString("ip", ipa.getText().toString()).commit();
 					setData.edit().putString("port", portnumber.getText().toString()).commit();
-					client.connect(ipa.getText().toString(), port,pass.getText().toString());
+					client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()),pass.getText().toString());
+					client.send(pass.getText().toString());
+					client.send("adfsfd");
 					try{
 						if (Status.isconnected==true)		
 							Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();

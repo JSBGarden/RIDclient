@@ -44,6 +44,10 @@ public class MouseActivity extends ActionBarActivity implements android.widget.A
 	private ListView lv;
 	private String[] a;
 	private ActionBarDrawerToggle drawerListener;
+	//check if pressing can cause click
+	private Boolean canClick=false;
+	private int time;
+	
 	ClientSocket client;
 	MouseClientProcess mouseClientProcess;
 	Button btnLeftClick,btnRightClick;
@@ -142,6 +146,25 @@ public class MouseActivity extends ActionBarActivity implements android.widget.A
 				      break;
 				     
 				     }
+				     switch(action){
+				     case MotionEvent.ACTION_DOWN:
+				    	 time=(int) System.currentTimeMillis();
+				    	 canClick=true;
+				    	 
+				    	 break;
+				     case MotionEvent.ACTION_UP:
+				    	 if (time+TIME_INTERVAL > System.currentTimeMillis() )
+				    	 {	 
+							
+							client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_LEFT);
+				    	 client.send(Events.MOUSE_BUTTON_UP +","+Buttons.MOUSE_BUTTON_LEFT);
+				    	 canClick=false;
+				    	 
+				    	 }
+				    	 break;
+				     
+				     }
+				     
 				return false;
 			}
 		});
@@ -256,6 +279,7 @@ public class MouseActivity extends ActionBarActivity implements android.widget.A
 			break;
 		case 7:
 			Intent g=new Intent(this,Intro.class);
+			client.disconnect();
 			startActivity(g);
 			break;
 		case 8:

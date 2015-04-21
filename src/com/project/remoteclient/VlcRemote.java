@@ -192,6 +192,7 @@ public class VlcRemote extends ActionBarActivity implements OnItemClickListener 
 				break;
 			case 7:
 				Intent g=new Intent(this,Intro.class);
+				clientSocket.disconnect();
 				startActivity(g);
 				break;
 			case 8:
