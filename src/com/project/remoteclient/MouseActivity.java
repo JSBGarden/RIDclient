@@ -146,7 +146,7 @@ public class MouseActivity extends ActionBarActivity implements android.widget.A
 				      break;
 				     
 				     }
-				     switch(action){
+				     /*switch(action){
 				     case MotionEvent.ACTION_DOWN:
 				    	 time=(int) System.currentTimeMillis();
 				    	 canClick=true;
@@ -163,7 +163,7 @@ public class MouseActivity extends ActionBarActivity implements android.widget.A
 				    	 }
 				    	 break;
 				     
-				     }
+				     }*/
 				     
 				return false;
 			}
