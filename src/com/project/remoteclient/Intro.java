@@ -14,6 +14,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -65,6 +67,7 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
 		portnumber=(EditText)findViewById(R.id.txtPortNumber);
+		//portnumber.setInputType(InputType.TYPE_CLASS_NUMBER);
 		pass=(EditText)findViewById(R.id.txtPassword);
 		if (getIntent().getBooleanExtra("EXIT", false)) {
 	         finish();
@@ -77,13 +80,49 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 				// open other activity only if connected to wifi or not
 				//if (isWifiConnected())
 				{
-					port= Integer.parseInt(portnumber.getText().toString());
+					//port= Integer.parseInt(portnumber.getText().toString());
 					SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 					setData.edit().putString("ip", ipa.getText().toString()).commit();
 					setData.edit().putString("port", portnumber.getText().toString()).commit();
-					client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()),pass.getText().toString());
-					client.send(pass.getText().toString());
-					client.send("adfsfd");
+					try{
+						String ipc=ipa.getText().toString();
+						String pcv=portnumber.getText().toString();
+						int pc=Integer.parseInt(portnumber.getText().toString());
+						if(TextUtils.isEmpty(ipc)){
+							ipa.setError("Please enter the ip address specified in server");
+							ipa.requestFocus();
+							
+							
+						}
+						else if( TextUtils.isEmpty(pcv)){
+							portnumber.setError("Enter port no");
+							portnumber.setError("Please enter the port no specified in server");
+							portnumber.requestFocus();
+						}
+						else if(pc<=1024){
+							portnumber.setError("Enter port no above 1024 specified in server");
+							portnumber.requestFocus();
+						}
+						else{
+							client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()),pass.getText().toString());
+							client.send(pass.getText().toString());
+							client.send("adfsfd");
+							Intent i=new Intent(Intro.this,MouseActivity.class);
+							startActivity(i);
+							
+						}
+					}
+					catch(Exception e){
+						Toast.makeText(Intro.this, "Please fill in all fields before continuing", Toast.LENGTH_SHORT).show();
+						String pcv=portnumber.getText().toString();
+						if( TextUtils.isEmpty(pcv)){
+							portnumber.setError("Please enter the port no specified in server");
+							portnumber.requestFocus();
+					}
+					}
+					
+					
+					
 					try{
 						if (Status.isconnected==true)		
 							Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
@@ -95,8 +134,8 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 						//Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
 					}
 
-					Intent i=new Intent(Intro.this,MouseActivity.class);
-					startActivity(i);
+					
+					
 				}
 /*				else
 				{
@@ -209,4 +248,6 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 
 	    mBackPressed = System.currentTimeMillis();
 	}
+	
+	
 }

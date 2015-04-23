@@ -1182,9 +1182,9 @@ containing a value of this type.
         public static final int ABOUT=0x7f070083;
         public static final int FrameLayout1=0x7f07004e;
         public static final int HELP=0x7f070084;
-        public static final int Help=0x7f070087;
+        public static final int Help=0x7f070088;
         public static final int INFO=0x7f070082;
-        public static final int aboutUs=0x7f070085;
+        public static final int aboutUs=0x7f070086;
         public static final int action_bar=0x7f07001c;
         public static final int action_bar_activity_content=0x7f070015;
         public static final int action_bar_container=0x7f07001b;
@@ -1229,9 +1229,10 @@ containing a value of this type.
         public static final int drawer_layout=0x7f07004d;
         public static final int drawyerayout=0x7f070075;
         public static final int dropdown=0x7f07000f;
+        public static final int editText1=0x7f070085;
         public static final int edit_query=0x7f070030;
         public static final int end=0x7f070013;
-        public static final int exit=0x7f070088;
+        public static final int exit=0x7f070089;
         public static final int expand_activities_button=0x7f070026;
         public static final int expanded_menu=0x7f07002c;
         public static final int gamepad_bottom_left=0x7f070078;
@@ -1270,7 +1271,7 @@ containing a value of this type.
         public static final int never=0x7f070009;
         public static final int none=0x7f070010;
         public static final int normal=0x7f070000;
-        public static final int preferences=0x7f070086;
+        public static final int preferences=0x7f070087;
         public static final int progress_circular=0x7f070018;
         public static final int progress_horizontal=0x7f070019;
         public static final int radio=0x7f07002f;
