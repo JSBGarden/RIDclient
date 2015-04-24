@@ -32,6 +32,8 @@
 		    android:title="Mouse Sensitivity"
       		android:key="mousesensitivity"
       		android:summary="Enter 0-10 for sensitivity"
+      		android:defaultValue="5"
+      		android:inputType="number"
       		/>
 		<CheckBoxPreference
 		    android:title="Haptic Feedback"

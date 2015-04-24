@@ -27,7 +27,8 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:hint="Enter the ip address"
-        android:inputType="phone" >
+        android:inputType="phone"
+         >
 
         <requestFocus />
     </EditText>
