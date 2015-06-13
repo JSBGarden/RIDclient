@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="60dp"
         android:text="Connect" />
 
     <EditText
@@ -41,32 +41,12 @@
           android:layout_marginBottom="130dp"        
         android:text="Server IP:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-<TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:layout_gravity="center"
-          android:layout_marginBottom="60dp"        
-        android:text="Server Password:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-<EditText
-    android:id="@+id/txtPassword"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginBottom="20dp"
-    android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-    android:ems="10"
-    android:hint="Enter Password"
-    android:inputType="textPassword" />
 <EditText
         android:id="@+id/txtPortNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="0dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:ems="10"
@@ -82,7 +62,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-          android:layout_marginTop="30dp"        
+          android:layout_marginBottom="30dp"        
         android:text="Server Port Number:"
     android:textAppearance="?android:attr/textAppearanceLarge" />
     
@@ -93,7 +73,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:background="#ffffff"
+        android:background="#444444"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp" />

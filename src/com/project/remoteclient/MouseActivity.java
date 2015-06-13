@@ -139,6 +139,7 @@ public class MouseActivity extends ActionBarActivity implements android.widget.A
 				     case MotionEvent.ACTION_CANCEL:		
 				    	 
 				    	 if (mouseClientProcess.shouldDataBeSend())				
+				    		 
 				    	 client.send(Events.MOUSE_MOVE +","+Integer.toString(mouseClientProcess.getX_difference()) + ","+
 				    			 		  Integer.toString(mouseClientProcess.getY_difference()));				    	 
 				    	 

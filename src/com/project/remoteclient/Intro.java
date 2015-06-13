@@ -46,7 +46,7 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	int port;
 	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
 	private long mBackPressed;
-
+	EditText ipa,pass,portnumber;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -63,12 +63,12 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		client=new ClientSocket();
 		Button connect;
-		final EditText ipa,pass,portnumber;
+		
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
 		portnumber=(EditText)findViewById(R.id.txtPortNumber);
 		//portnumber.setInputType(InputType.TYPE_CLASS_NUMBER);
-		pass=(EditText)findViewById(R.id.txtPassword);
+		
 		if (getIntent().getBooleanExtra("EXIT", false)) {
 	         finish();
 	    }
@@ -104,9 +104,15 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 							portnumber.requestFocus();
 						}
 						else{
-							client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()),pass.getText().toString());
-							client.send(pass.getText().toString());
-							client.send("adfsfd");
+							//if(connectionEstablished()==true){
+							//	Toast.makeText(Intro.this, "Connection Successful", Toast.LENGTH_SHORT).show();
+							//}
+							//else
+							//	Toast.makeText(Intro.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+							client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()));
+							//client.send(pass.getText().toString());
+							//client.send("adfsfd");
+							//client.
 							Intent i=new Intent(Intro.this,MouseActivity.class);
 							startActivity(i);
 							
@@ -123,7 +129,7 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 					
 					
 					
-					try{
+					/*try{
 						if (Status.isconnected==true)		
 							Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
 						else
@@ -132,7 +138,7 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 					catch(Exception e){
 						e.printStackTrace();
 						//Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
-					}
+					}*/
 
 					
 					
@@ -249,5 +255,14 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	    mBackPressed = System.currentTimeMillis();
 	}
 	
-	
+	/*public boolean connectionEstablished(){
+		try{
+			client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()),pass.getText().toString());
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		} 
+		
+	}*/
 }

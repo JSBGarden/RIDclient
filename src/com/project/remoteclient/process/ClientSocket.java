@@ -30,7 +30,7 @@ public class ClientSocket {
 		
 		
 		//function to connect to the server 
-		public void connect(final String ip,final int port,final String password){
+		public void connect(final String ip,final int port){
 			new Thread(new Runnable() {
 				@Override
 				public void run() {

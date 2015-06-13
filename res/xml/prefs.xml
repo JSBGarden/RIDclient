@@ -21,20 +21,7 @@
           android:defaultValue="true"
           android:key="music"
           android:summary="Check to enable music"/>
-      <ListPreference
-          android:title="Controller Selection" 
-          android:key="list"
-          android:defaultValue="Controller 1"
-          android:entries="@array/list"
-          android:entryValues="@array/lValues"
-		/> 
-		<EditTextPreference
-		    android:title="Mouse Sensitivity"
-      		android:key="mousesensitivity"
-      		android:summary="Enter 0-10 for sensitivity"
-      		android:defaultValue="5"
-      		android:inputType="number"
-      		/>
+      
 		<CheckBoxPreference
 		    android:title="Haptic Feedback"
 		    android:key="vibrate"
