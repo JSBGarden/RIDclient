@@ -14,6 +14,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,9 +43,10 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	private String[] listItem;
 	private ActionBarDrawerToggle drawerListener;
 	ClientSocket client;
-	int port=8081;
-
-
+	int port;
+	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+	private long mBackPressed;
+	EditText ipa,pass,portnumber;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -60,10 +63,15 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		client=new ClientSocket();
 		Button connect;
-		final EditText ipa,pass;
+		
 		connect=(Button)findViewById(R.id.btnConnectPC);
 		ipa=(EditText)findViewById(R.id.txtIpAddress);
-		pass=(EditText)findViewById(R.id.txtPassword);
+		portnumber=(EditText)findViewById(R.id.txtPortNumber);
+		//portnumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+		
+		if (getIntent().getBooleanExtra("EXIT", false)) {
+	         finish();
+	    }
 
 		connect.setOnClickListener(new OnClickListener() {
 
@@ -72,10 +80,56 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 				// open other activity only if connected to wifi or not
 				//if (isWifiConnected())
 				{
+					//port= Integer.parseInt(portnumber.getText().toString());
 					SharedPreferences setData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 					setData.edit().putString("ip", ipa.getText().toString()).commit();
-					client.connect(ipa.getText().toString(), port,pass.getText().toString());
+					setData.edit().putString("port", portnumber.getText().toString()).commit();
 					try{
+						String ipc=ipa.getText().toString();
+						String pcv=portnumber.getText().toString();
+						int pc=Integer.parseInt(portnumber.getText().toString());
+						if(TextUtils.isEmpty(ipc)){
+							ipa.setError("Please enter the ip address specified in server");
+							ipa.requestFocus();
+							
+							
+						}
+						else if( TextUtils.isEmpty(pcv)){
+							portnumber.setError("Enter port no");
+							portnumber.setError("Please enter the port no specified in server");
+							portnumber.requestFocus();
+						}
+						else if(pc<=1024){
+							portnumber.setError("Enter port no above 1024 specified in server");
+							portnumber.requestFocus();
+						}
+						else{
+							//if(connectionEstablished()==true){
+							//	Toast.makeText(Intro.this, "Connection Successful", Toast.LENGTH_SHORT).show();
+							//}
+							//else
+							//	Toast.makeText(Intro.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+							client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()));
+							//client.send(pass.getText().toString());
+							//client.send("adfsfd");
+							//client.
+							Intent i=new Intent(Intro.this,MouseActivity.class);
+							startActivity(i);
+							
+						}
+					}
+					catch(Exception e){
+						Toast.makeText(Intro.this, "Please fill in all fields before continuing", Toast.LENGTH_SHORT).show();
+						String pcv=portnumber.getText().toString();
+						if( TextUtils.isEmpty(pcv)){
+							portnumber.setError("Please enter the port no specified in server");
+							portnumber.requestFocus();
+					}
+					}
+					
+					
+					
+					/*try{
 						if (Status.isconnected==true)		
 							Toast.makeText(getApplicationContext(), "Connection successful", Toast.LENGTH_SHORT).show();
 						else
@@ -84,10 +138,10 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 					catch(Exception e){
 						e.printStackTrace();
 						//Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
-					}
+					}*/
 
-					Intent i=new Intent(Intro.this,MouseActivity.class);
-					startActivity(i);
+					
+					
 				}
 /*				else
 				{
@@ -100,10 +154,12 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		SharedPreferences getData=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
 		String et=getData.getString("ip", "");
+		String et2=getData.getString("port", "");
 
 		boolean remember=getData.getBoolean("checkbox", true);
 		if(remember==true){
 			ipa.setText(et);
+			portnumber.setText(et2);
 		}
 
 	}
@@ -145,13 +201,13 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 	}
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-		Toast.makeText(this, listItem[position], Toast.LENGTH_LONG).show();
+		//Toast.makeText(this, listItem[position], Toast.LENGTH_LONG).show();
 		selectItem(position);
 		
 	}
 	public void selectItem(int position) {
 		lv.setItemChecked(position, true);
-		setTitle(listItem[position]);
+		//setTitle(listItem[position]);
 		switch(position){
 		case 0:
 			Intent a=new Intent(Intro.this,Prefs.class);
@@ -166,17 +222,14 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 			startActivity(c);
 			break;
 		case 3:
-			System.exit(0);
+			finish();
 			break;
 		
 			default:
 		}
-		
+		dl.closeDrawer(lv);
 	}
-	public void setTitle(String title){
-		getSupportActionBar().setTitle(title);
 	
-	}
 	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -185,5 +238,31 @@ public class Intro extends ActionBarActivity implements OnItemClickListener {
 		drawerListener.syncState();
 	}
 	
+	@Override
+	public void onBackPressed()
+	{
+	    if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
+	    { 
+	        super.onBackPressed(); 
+	        Intent intent = new Intent(getApplicationContext(), Intro.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.putExtra("EXIT", true);
+			startActivity(intent);
+	        return;
+	    }
+	    else { Toast.makeText(getBaseContext(), "Tap back button again in order to exit", Toast.LENGTH_SHORT).show(); }
+
+	    mBackPressed = System.currentTimeMillis();
+	}
 	
+	/*public boolean connectionEstablished(){
+		try{
+			client.connect(ipa.getText().toString(), Integer.parseInt(portnumber.getText().toString()),pass.getText().toString());
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		} 
+		
+	}*/
 }
