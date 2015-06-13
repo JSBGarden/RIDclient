@@ -106,11 +106,9 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-<<<<<<< HEAD
+
         android:background="@android:color/transparent"
-=======
-        android:background="#444444"
->>>>>>> 6ac69b65bcf2e95fb55e526a5803b4e37748afe9
+
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp" />
