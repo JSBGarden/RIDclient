@@ -5,28 +5,23 @@
       android:key="ip"
       android:summary="Enter the ip address"     
       ></EditTextPreference> 
+      <EditTextPreference
+      android:title="Port"
+      android:key="port"
+      android:summary="Enter the port number"     
+      ></EditTextPreference>
       <CheckBoxPreference
-          android:title="Remember IP"
+          android:title="Remember IP and Port Number"
           android:defaultValue="true"
           android:key="checkbox"
-          android:summary="Check this box to remember ip"
+          android:summary="Check this box to remember ip address and port number"
          />
       <CheckBoxPreference
           android:title="Music"
           android:defaultValue="true"
           android:key="music"
           android:summary="Check to enable music"/>
-      <ListPreference
-          android:title="Controller Selection" 
-          android:key="list"
-          android:entries="@array/list"
-          android:entryValues="@array/lValues"
-		/> 
-		<EditTextPreference
-		    android:title="Mouse Sensitivity"
-      		android:key="mousesensitivity"
-      		android:summary="Enter 0-10 for sensitivity"
-      		/>
+      
 		<CheckBoxPreference
 		    android:title="Haptic Feedback"
 		    android:key="vibrate"

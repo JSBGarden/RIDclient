@@ -39,6 +39,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+     	<activity
+            android:name="com.project.remoteclient.joypadactivity"
+            
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="com.project.remoteclient.JOYPADACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.project.remoteclient.joypadactivity"
             android:screenOrientation="landscape"
