@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.8" icons="true">  
+  <object id="1" language="java" name="com.project.remoteclient.About" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/About.java" binary="false" label="about" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="162" y="0"/>  
+  </object>  
+  <object id="2" language="java" name="com.project.remoteclient.process.MouseClientProcess" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/process/MouseClientProcess.java" binary="false" 
+    label="mouseClientProcess" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="336" y="0"/>  
+  </object>  
+  <object id="3" language="java" name="com.project.remoteclient.process.Status" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/process/Status.java" binary="false" label="status" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="496" y="0"/>  
+  </object>  
+  <object id="4" language="java" name="com.project.remoteclient.HelpActivity" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/HelpActivity.java" binary="false" label="helpActivity" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="683" y="0"/>  
+  </object>  
+  <object id="5" language="java" name="com.project.remoteclient.process.ClientSocket" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/process/ClientSocket.java" binary="false" label="clientSocket" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="231" y="0"/>  
+  </object>  
+  <object id="6" language="java" name="com.project.remoteclient.Intro" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/Intro.java" binary="false" label="intro" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="624" y="0"/>  
+  </object>  
+  <object id="7" language="java" name="com.project.remoteclient.joypadactivity" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/joypadactivity.java" binary="false" label="joypadactivity" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="647" y="0"/>  
+  </object>  
+  <object id="8" language="java" name="com.project.remoteclient.PowerPointRemoteActivity" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/PowerPointRemoteActivity.java" binary="false" 
+    label="powerPointRemoteActivity" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="700" y="0"/>  
+  </object>  
+  <object id="9" language="java" name="com.project.remoteclient.MouseActivity" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/MouseActivity.java" binary="false" label="mouseActivity" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="663" y="0"/>  
+  </object>  
+  <object id="10" language="java" name="com.project.remoteclient.VlcRemote" project="RemoteClient" 
+    file="/RemoteClient/src/com/project/remoteclient/VlcRemote.java" binary="false" label="vlcRemote" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="714" y="0"/>  
+  </object>
+</sequence-diagram>

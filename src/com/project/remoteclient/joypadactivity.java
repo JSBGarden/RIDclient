@@ -6,23 +6,32 @@ import com.project.remoteprotocol.global.Events;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 
 
-public class joypadactivity extends Activity {
+public class joypadactivity extends ActionBarActivity implements android.widget.AdapterView.OnItemClickListener {
 
 	int controlNumber;
 
@@ -30,11 +39,29 @@ public class joypadactivity extends Activity {
 	ToggleButton tb;
 	ImageView ibtnUP,ibtnCross,ibtnStart,ibtnSelect,ibtnSquare,ibtnTriangle, ibtnDown,ibtnLeft,ibtnRight,ibtnCircle;
 
+	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+	private long mBackPressed;
+	private DrawerLayout dl;
+	private ListView lv;
+	private String[] a;
+	private ActionBarDrawerToggle drawerListener;
+	//check if pressing can cause click
+	private Boolean canClick=false;
+	private int time;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_joypad);
+		dl=(DrawerLayout)findViewById(R.id.drawer_layout);
+		lv=(ListView)findViewById(R.id.left_drawer);
+		a=getResources().getStringArray(R.array.Menu);
+		lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 ,a));
+		lv.setOnItemClickListener(this);
+		drawerListener=new ActionBarDrawerToggle(this, dl, R.drawable.drawericon, R.string.drawer_open, R.string.drawer_close);
+		dl.setDrawerListener(drawerListener);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		client= new ClientSocket ();
 		ibtnUP=(ImageView)findViewById(R.id.btnUp);
 		ibtnCross=(ImageView)findViewById(R.id.btnCross);
@@ -169,5 +196,113 @@ public class joypadactivity extends Activity {
 	 		   Vibrator vibe=(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	
 	  			vibe.vibrate(100);}
 
-}}
+}
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+			
+			if(drawerListener.onOptionsItemSelected(item))
+			{
+				return true;
+			}
+			return super.onOptionsItemSelected(item);
+		}
+		@Override
+		public void onConfigurationChanged(Configuration newConfig) {
+			// TODO Auto-generated method stub
+			super.onConfigurationChanged(newConfig);
+			drawerListener.onConfigurationChanged(newConfig);
+		}
+
+		@Override
+		public boolean onMenuOpened(int featureId, android.view.Menu menu) {
+			// TODO Auto-generated method stub
+			return super.onMenuOpened(featureId, menu);
+
+		}
+
+
+
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+			//Toast.makeText(this, a[position], Toast.LENGTH_LONG).show();
+			selectItem(position);
+			
+		}
+		public void selectItem(int position) {
+			lv.setItemChecked(position, true);
+			//setTitle(a[position]);
+			switch(position){
+			case 0:
+				Intent a=new Intent(joypadactivity.this,MouseActivity.class);
+				startActivity(a);
+				break;
+			case 1:
+				Intent b=new Intent(joypadactivity.this,PowerPointRemoteActivity.class);
+				startActivity(b);
+				break;
+			case 2:
+				Intent c=new Intent(joypadactivity.this,VlcRemote.class);
+				startActivity(c);
+				break;
+			case 3:
+				Intent j=new Intent(joypadactivity.this,joypadactivity.class);
+				startActivity(j);
+				break;
+			case 4:
+				Intent d=new Intent(joypadactivity.this,Prefs.class);
+				startActivity(d);
+				break;
+			case 5:
+				Intent e=new Intent(joypadactivity.this,HelpActivity.class);
+				startActivity(e);
+				break;
+			case 6:
+				Intent f=new Intent(joypadactivity.this,About.class);
+				startActivity(f);
+				break;
+			case 7:
+				Intent g=new Intent(this,Intro.class);
+				client.disconnect();
+				startActivity(g);
+				break;
+			case 8:
+				Intent intent = new Intent(getApplicationContext(), Intro.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				intent.putExtra("EXIT", true);
+				startActivity(intent);
+				break;
+				default:
+			}
+			dl.closeDrawer(lv);
+			
+		}
+		
+		
+		@Override
+		protected void onPostCreate(Bundle savedInstanceState) {
+			// TODO Auto-generated method stub
+			super.onPostCreate(savedInstanceState);
+			drawerListener.syncState();
+		}
+		
+		
+		@Override
+		public void onBackPressed()
+		{
+		    if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
+		    { 
+		        super.onBackPressed(); 
+		        Intent intent = new Intent(getApplicationContext(), Intro.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				intent.putExtra("EXIT", true);
+				startActivity(intent);
+		        return;
+		    }
+		    else { Toast.makeText(getBaseContext(), "Tap back button again in order to exit", Toast.LENGTH_SHORT).show(); }
+
+		    mBackPressed = System.currentTimeMillis();
+		}
+
+		}
 
